@@ -1,0 +1,11 @@
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\bin\Debug\netcoreapp2.1\MaryBottins.deps.json
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\bin\Debug\netcoreapp2.1\MaryBottins.dll
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\bin\Debug\netcoreapp2.1\MaryBottins.pdb
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\bin\Debug\netcoreapp2.1\BotInterface.dll
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.csprojAssemblyReference.cache
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.csproj.CoreCompileInputs.cache
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.AssemblyInfoInputs.cache
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.AssemblyInfo.cs
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.csproj.CopyComplete
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.dll
+C:\Work\Training\Dynamite\MaryBottins\MaryBottins\obj\Debug\netcoreapp2.1\MaryBottins.pdb

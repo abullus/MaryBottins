@@ -5,11 +5,11 @@ namespace MaryBottins
 {
     public class GameplayScores
     {
-        private int RoundNumber;
+        public int RoundNumber;
         private int p1Score;
         private int p2Score;
-        private int DrawCount;
-        private double EstimatedGameLength;
+        public int DrawCount;
+        public decimal EstimatedGameLength;
 
         public GameplayScores()
         {

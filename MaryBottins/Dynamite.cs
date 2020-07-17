@@ -1,4 +1,5 @@
-﻿using BotInterface.Game;
+﻿using System;
+using BotInterface.Game;
 
 namespace MaryBottins
 {
@@ -23,10 +24,11 @@ namespace MaryBottins
             {
                 return Move.D;
             }
+
             return Move.P;
         }
-        
-        public void UpdateDynamite(Round lastRound, GameplayScores gameplayScores)
+
+        public void UpdateDynamite(Round lastRound)
         {
             if (lastRound.GetP1() == Move.D || lastRound.GetP2() == Move.D)
             {
@@ -43,9 +45,49 @@ namespace MaryBottins
             }
         }
 
-        public void ShouldDynamiteBePlayed()
+        public Move ShouldDynamiteBePlayed(GameplayScores gameplayScores, Move moveToMake)
         {
-            
+            if (p1Dynamite == 0)
+            {
+                if (moveToMake == Move.D)
+                {
+                    return Move.P;
+                }
+
+                return moveToMake;
+            }
+
+            decimal RoundsBetweenUsage =
+                (gameplayScores.EstimatedGameLength - gameplayScores.RoundNumber) / (3 * p1Dynamite);
+            // Calculate the number of rounds between each dynamite if thrown evenly throughout match
+            decimal ProbOfThrowingInv;
+            if (gameplayScores.DrawCount > 0)
+            {
+                ProbOfThrowingInv = RoundsBetweenUsage / (gameplayScores.DrawCount * 5);
+                // Inverse of the probability we are aiming for to throw dynamite. 
+            }
+            else if (moveToMake == Move.D)
+            {
+                ProbOfThrowingInv = RoundsBetweenUsage / 5;
+            }
+            else
+            {
+                return moveToMake;
+            }
+
+            int RoundedProbabilityInv = (int) Math.Round(ProbOfThrowingInv);
+            int FinalProbability = Math.Max(RoundedProbabilityInv, 1);
+            var rand = new Random();
+            int pick = rand.Next(FinalProbability);
+            if (pick == 0)
+            {
+                if (DynamiteJustThrown)
+                {
+                    return Move.W;
+                }
+                return Move.D;
+            }
+            return Move.P;
         }
     }
 }

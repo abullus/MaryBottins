@@ -13,6 +13,7 @@ namespace MaryBottins
             Round[] rounds = gamestate.GetRounds();
             if (rounds != null && rounds.Length > 2)
             {
+                Move suggestedMove;
                 Move moveToMake;
                 Move predictedMove;
                 UpdateClasses(rounds);
@@ -22,20 +23,21 @@ namespace MaryBottins
                 {
                     case 0:
                         predictedMove = PredictOpponentMoves[rounds.Last().GetP2()].PredictAMove();
-                        moveToMake = CounterTheirMove(predictedMove);
+                        suggestedMove = SuggestMove.CounterTheirMove(predictedMove);
                         break;
                     case 1:
                         predictedMove = PredictMyMoves[rounds.Last().GetP1()].PredictAMove();
-                        moveToMake = CounterMyMove(predictedMove);
+                        suggestedMove = SuggestMove.CounterMyMove(predictedMove);
                         break;
                     case 2:
-                        moveToMake = GuessAMove();
+                        suggestedMove = SuggestMove.GuessAMove();
                         break;
                     default:
-                        moveToMake = Move.P;
+                        suggestedMove = Move.P;
                         break;
                 }
-                
+
+                moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
                 if (moveToMake == Move.D)
                 {
                     return Dynamite.PlayDynamite();
@@ -45,6 +47,7 @@ namespace MaryBottins
             return Move.P;
         }
 
+        public SuggestMove SuggestMove;
         public GameplayScores GameplayScores;
         public Dynamite Dynamite;
         public Dictionary<Move, MovePredictionData> PredictOpponentMoves { get; set; }
@@ -72,7 +75,7 @@ namespace MaryBottins
             Round secondLastRound = rounds[rounds.Length - 2];
             Round lastRound = rounds.Last();
             GameplayScores.UpdateGameplay(lastRound);
-            Dynamite.UpdateDynamite(lastRound, GameplayScores);
+            Dynamite.UpdateDynamite(lastRound);
             PredictMyMoves[secondLastRound.GetP1()].UpdateCounts(lastRound.GetP1());
             PredictOpponentMoves[secondLastRound.GetP2()].UpdateCounts(lastRound.GetP2());
         }
