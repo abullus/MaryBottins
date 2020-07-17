@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "4oALzV8D6EvZoIbKfvntEb64O9Vr/CGlOa3ixTueUaVlSCdL4iE8MfiLd5XKEVx5bJn7G0XfSd7q2TD9VTLNqA==",
+  "success": true,
+  "projectFilePath": "C:\\Work\\Training\\Dynamite\\MaryBottins\\MaryBottins\\MaryBottins.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "C:\\Users\\alfbul\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
