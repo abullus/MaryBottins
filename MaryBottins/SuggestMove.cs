@@ -8,7 +8,7 @@ namespace MaryBottins
         public Move GuessAMove()
         {
             var rand = new Random();
-            int pick = rand.Next(2);
+            int pick = rand.Next(3);
             switch (pick)
             {
                 case 0:

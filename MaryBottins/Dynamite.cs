@@ -7,6 +7,7 @@ namespace MaryBottins
     {
         private int p1Dynamite;
         private int p2Dynamite;
+
         private bool DynamiteJustThrown;
         //private int NonDrawDynamiteCount;
 
@@ -43,6 +44,10 @@ namespace MaryBottins
                     p2Dynamite--;
                 }
             }
+            else
+            {
+                DynamiteJustThrown = false;
+            }
         }
 
         public Move ShouldDynamiteBePlayed(GameplayScores gameplayScores, Move moveToMake)
@@ -58,17 +63,22 @@ namespace MaryBottins
             }
 
             decimal RoundsBetweenUsage =
-                (gameplayScores.EstimatedGameLength - gameplayScores.RoundNumber) / (3 * p1Dynamite);
+                (gameplayScores.EstimatedGameLength - gameplayScores.RoundNumber) / (p1Dynamite);
             // Calculate the number of rounds between each dynamite if thrown evenly throughout match
             decimal ProbOfThrowingInv;
             if (gameplayScores.DrawCount > 0)
             {
-                ProbOfThrowingInv = RoundsBetweenUsage / (gameplayScores.DrawCount * 5);
+                double NumberOfDrawsExponent = 1.3;
+                if (p2Dynamite == 0)
+                {
+                    NumberOfDrawsExponent = 1.5;
+                }
+                ProbOfThrowingInv = RoundsBetweenUsage / ((decimal) (Math.Pow(gameplayScores.DrawCount, NumberOfDrawsExponent) * 5));
                 // Inverse of the probability we are aiming for to throw dynamite. 
             }
             else if (moveToMake == Move.D)
             {
-                ProbOfThrowingInv = RoundsBetweenUsage / 5;
+                ProbOfThrowingInv = RoundsBetweenUsage / 3;
             }
             else
             {
@@ -83,10 +93,12 @@ namespace MaryBottins
             {
                 if (DynamiteJustThrown)
                 {
-                    return Move.W;
+                    return moveToMake;
                 }
+
                 return Move.D;
             }
+
             return Move.P;
         }
     }

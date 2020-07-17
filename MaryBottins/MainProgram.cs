@@ -17,18 +17,21 @@ namespace MaryBottins
                 Move predictedMove;
                 UpdateClasses(rounds);
                 var rand = new Random();
-                int pick = rand.Next(3);
+                int pick = rand.Next(5);
                 switch (pick)
                 {
                     case 0:
+                    case 1:
+                        case 2:
                         predictedMove = PredictOpponentMoves[rounds.Last().GetP2()].PredictAMove();
                         suggestedMove = SuggestMove.CounterTheirMove(predictedMove);
                         break;
-                    case 1:
+                    
+                    case 3:
                         predictedMove = PredictMyMoves[rounds.Last().GetP1()].PredictAMove();
                         suggestedMove = SuggestMove.CounterMyMove(predictedMove);
                         break;
-                    case 2:
+                    case 4:
                         suggestedMove = SuggestMove.GuessAMove();
                         break;
                     default:
@@ -37,13 +40,9 @@ namespace MaryBottins
                 }
 
                 var moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
-                
-                if (moveToMake == Move.D)
-                {
-                    return Dynamite.PlayDynamite();
-                }
                 return moveToMake;
             }
+
             return Move.P;
         }
 
@@ -61,13 +60,13 @@ namespace MaryBottins
             PredictOpponentMoves = new Dictionary<Move, MovePredictionData>();
             PredictMyMoves = new Dictionary<Move, MovePredictionData>();
             MoveArray = new[] {Move.R, Move.P, Move.S, Move.W, Move.D};
-            SuggestMove= new SuggestMove();
+            SuggestMove = new SuggestMove();
             foreach (var move in MoveArray)
             {
                 MovePredictionData p1predictMoves = new MovePredictionData(move);
                 MovePredictionData p2predictMoves = new MovePredictionData(move);
                 PredictMyMoves.Add(move, p1predictMoves);
-                PredictOpponentMoves.Add(move,p2predictMoves);
+                PredictOpponentMoves.Add(move, p2predictMoves);
             }
         }
 
