@@ -22,15 +22,19 @@ namespace MaryBottins
                 {
                     case 0:
                     case 1:
-                        case 2:
+                    case 2:
+                        //case 3:
                         predictedMove = PredictOpponentMoves[rounds.Last().GetP2()].PredictAMove();
                         suggestedMove = SuggestMove.CounterTheirMove(predictedMove);
                         break;
-                    
-                    case 3:
+                    //case 2:
+                    //case 3:
+                    //case 3:
+                        case 6:
                         predictedMove = PredictMyMoves[rounds.Last().GetP1()].PredictAMove();
                         suggestedMove = SuggestMove.CounterMyMove(predictedMove);
                         break;
+                    case 3:
                     case 4:
                         suggestedMove = SuggestMove.GuessAMove();
                         break;
@@ -42,6 +46,7 @@ namespace MaryBottins
                 var moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
                 return moveToMake;
             }
+
             return Move.P;
         }
 

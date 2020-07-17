@@ -7,6 +7,7 @@ namespace MaryBottins
     {
         private int p1Dynamite;
         private int p2Dynamite;
+        private int ConsecutiveDynamiteCount;
 
         private bool DynamiteJustThrown;
         //private int NonDrawDynamiteCount;
@@ -16,6 +17,7 @@ namespace MaryBottins
             p1Dynamite = 100;
             p2Dynamite = 100;
             DynamiteJustThrown = false;
+            ConsecutiveDynamiteCount = 0;
             //NonDrawDynamiteCount = 0;
         }
 
@@ -37,6 +39,7 @@ namespace MaryBottins
                 if (lastRound.GetP1() == Move.D)
                 {
                     p1Dynamite--;
+                    ConsecutiveDynamiteCount++;
                 }
 
                 if (lastRound.GetP2() == Move.D)
@@ -47,6 +50,7 @@ namespace MaryBottins
             else
             {
                 DynamiteJustThrown = false;
+                ConsecutiveDynamiteCount = 0;
             }
         }
 
@@ -61,12 +65,12 @@ namespace MaryBottins
 
                 return moveToMake;
             }
-            /*
+
             decimal RoundsBetweenUsage =
-                (gameplayScores.EstimatedGameLength - gameplayScores.RoundNumber) / (p1Dynamite);
-            // Calculate the number of rounds between each dynamite if thrown evenly throughout match*/
+                (1950 - gameplayScores.RoundNumber) / (p1Dynamite);
+            // Calculate the number of rounds between each dynamite if thrown evenly throughout match
             decimal ProbOfThrowingInv;
-            decimal RoundsBetweenUsage = 19; //del
+            //decimal RoundsBetweenUsage = 19; //del
 
             if (gameplayScores.DrawCount > 0)
             {
@@ -75,13 +79,21 @@ namespace MaryBottins
                 {
                     NumberOfDrawsExponent = 1.7;
                 }
-                ProbOfThrowingInv = RoundsBetweenUsage / ((decimal) (Math.Pow(gameplayScores.DrawCount, NumberOfDrawsExponent) * 4));
+
+                double NumberOfDrawsFactor = 4;
+                if (DynamiteJustThrown)
+                {
+                    NumberOfDrawsFactor = 2;
+                }
+
+                ProbOfThrowingInv = RoundsBetweenUsage /
+                                    ((decimal) (Math.Pow(gameplayScores.DrawCount, NumberOfDrawsExponent) *
+                                                NumberOfDrawsFactor));
                 // Inverse of the probability we are aiming for to throw dynamite. 
-                
             }
             else if (moveToMake == Move.D)
             {
-                ProbOfThrowingInv = RoundsBetweenUsage / 3;
+                ProbOfThrowingInv = RoundsBetweenUsage / (decimal) 1.2;
             }
             else
             {
@@ -94,11 +106,10 @@ namespace MaryBottins
             int pick = rand.Next(FinalProbability);
             if (pick == 0)
             {
-                if (DynamiteJustThrown)
+                if (ConsecutiveDynamiteCount > 3)
                 {
-                    return moveToMake;
+                    return Move.W;
                 }
-
                 return Move.D;
             }
 
