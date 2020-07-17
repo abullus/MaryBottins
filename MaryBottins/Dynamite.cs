@@ -61,20 +61,23 @@ namespace MaryBottins
 
                 return moveToMake;
             }
-
+            /*
             decimal RoundsBetweenUsage =
                 (gameplayScores.EstimatedGameLength - gameplayScores.RoundNumber) / (p1Dynamite);
-            // Calculate the number of rounds between each dynamite if thrown evenly throughout match
+            // Calculate the number of rounds between each dynamite if thrown evenly throughout match*/
             decimal ProbOfThrowingInv;
+            decimal RoundsBetweenUsage = 19; //del
+
             if (gameplayScores.DrawCount > 0)
             {
-                double NumberOfDrawsExponent = 1.3;
+                double NumberOfDrawsExponent = 1.5;
                 if (p2Dynamite == 0)
                 {
-                    NumberOfDrawsExponent = 1.5;
+                    NumberOfDrawsExponent = 1.7;
                 }
-                ProbOfThrowingInv = RoundsBetweenUsage / ((decimal) (Math.Pow(gameplayScores.DrawCount, NumberOfDrawsExponent) * 5));
+                ProbOfThrowingInv = RoundsBetweenUsage / ((decimal) (Math.Pow(gameplayScores.DrawCount, NumberOfDrawsExponent) * 4));
                 // Inverse of the probability we are aiming for to throw dynamite. 
+                
             }
             else if (moveToMake == Move.D)
             {

@@ -42,7 +42,6 @@ namespace MaryBottins
                 var moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
                 return moveToMake;
             }
-
             return Move.P;
         }
 
