@@ -19,10 +19,9 @@ namespace MaryBottins
                     return Move.S;
                 default:
                     return Move.R;
-                    
             }
         }
-        
+
         public Move CounterTheirMove(Move move)
         {
             switch (move)

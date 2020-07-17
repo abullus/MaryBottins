@@ -42,7 +42,5 @@ namespace MaryBottins
         {
             return FollowingMoveCount.FirstOrDefault(x => x.Value == FollowingMoveCount.Values.Max()).Key;
         }
-
-        
     }
 }

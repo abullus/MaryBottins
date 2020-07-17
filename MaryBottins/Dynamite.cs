@@ -8,14 +8,14 @@ namespace MaryBottins
         private int p1Dynamite;
         private int p2Dynamite;
         private bool DynamiteJustThrown;
-        private int NonDrawDynamiteCount;
+        //private int NonDrawDynamiteCount;
 
         public Dynamite()
         {
             p1Dynamite = 100;
             p2Dynamite = 100;
             DynamiteJustThrown = false;
-            NonDrawDynamiteCount = 0;
+            //NonDrawDynamiteCount = 0;
         }
 
         public Move PlayDynamite()

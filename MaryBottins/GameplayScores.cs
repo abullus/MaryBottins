@@ -23,6 +23,7 @@ namespace MaryBottins
         public void UpdateGameplay(Round lastRound)
         {
             RoundNumber++;
+            EstimateGameLength();
             Move p1Move = lastRound.GetP1();
             Move p2Move = lastRound.GetP2();
             switch (p1Move)
@@ -111,7 +112,8 @@ namespace MaryBottins
             else
             {
                 int maxScore = Math.Max(p1Score, p2Score);
-                EstimatedGameLength = (1000 * RoundNumber) / maxScore;
+                int maxScore2 = Math.Max(maxScore, 1);
+                EstimatedGameLength = (1000 * RoundNumber) / maxScore2;
             }
         }
 

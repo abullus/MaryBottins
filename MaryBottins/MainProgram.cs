@@ -14,11 +14,10 @@ namespace MaryBottins
             if (rounds != null && rounds.Length > 2)
             {
                 Move suggestedMove;
-                Move moveToMake;
                 Move predictedMove;
                 UpdateClasses(rounds);
                 var rand = new Random();
-                int pick = rand.Next(2);
+                int pick = rand.Next(3);
                 switch (pick)
                 {
                     case 0:
@@ -37,7 +36,8 @@ namespace MaryBottins
                         break;
                 }
 
-                moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
+                var moveToMake = Dynamite.ShouldDynamiteBePlayed(GameplayScores, suggestedMove);
+                
                 if (moveToMake == Move.D)
                 {
                     return Dynamite.PlayDynamite();
@@ -60,7 +60,8 @@ namespace MaryBottins
             GameplayScores = new GameplayScores();
             PredictOpponentMoves = new Dictionary<Move, MovePredictionData>();
             PredictMyMoves = new Dictionary<Move, MovePredictionData>();
-            MoveArray = new Move[] {Move.R, Move.P, Move.S, Move.W, Move.D};
+            MoveArray = new[] {Move.R, Move.P, Move.S, Move.W, Move.D};
+            SuggestMove= new SuggestMove();
             foreach (var move in MoveArray)
             {
                 MovePredictionData p1predictMoves = new MovePredictionData(move);
@@ -79,6 +80,5 @@ namespace MaryBottins
             PredictMyMoves[secondLastRound.GetP1()].UpdateCounts(lastRound.GetP1());
             PredictOpponentMoves[secondLastRound.GetP2()].UpdateCounts(lastRound.GetP2());
         }
-
     }
 }
